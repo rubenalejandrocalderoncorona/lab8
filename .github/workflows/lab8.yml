@@ -3,7 +3,7 @@ name: Workflow Commands
 on:
     workflow_dispatch:
     push:
-    
+
 jobs:
   commands_job:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
           echo "Masked key = $api_key"
 
       - name: Create a warning Log for this message "This is a warning message."
-        run: echo "::warining::This is a warning message"
+        run: echo "::warning::This is a warning message."
 
       - name: Create an error annotation with following parameters, file=app.py line=49 message=nullValue 
         run: echo "::error file=app.py,line=49::nullValue"
@@ -33,7 +33,7 @@ jobs:
         run: echo "LUCKY_NUMBER=1234567" >> "GITHUB_OUTPUT"
 
       - name: Echo the output set in the previous step
-        run: echo "My lucky number is ${{ steps.step1.outputs.result }}"
+        run: echo "My lucky number is ${{ steps.lucky_number_step.outputs.LUCKY_NUMBER }}"
 
       - name: Create a Job Summary as "Exploring Workflow Commands :thumbsup:"
         run: echo "Exploring Workflow Commands :thumbsup:" >> $GITHUB_STEP_SUMMARY
